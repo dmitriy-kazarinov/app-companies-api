@@ -75,6 +75,9 @@ export default {
     axios.get('http://localhost:4000/api/companies').then(res => {
       this.companies = res.data
     })
+    axios.get('http://localhost:4000/users/register').then(res => {
+      console.log(res)
+    })
   },
   methods: {
     sendCompany () {

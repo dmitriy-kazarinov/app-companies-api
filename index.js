@@ -1,5 +1,6 @@
 const express = require('express')
 const bodyParser = require('body-parser')
+const expressValidator = require('express-validator')
 const companies = require('./routes/companies')
 const users = require('./routes/users')
 const mongoose = require('mongoose')
@@ -21,14 +22,32 @@ app.use((req, res, next) => {
   next()
 })
 
-app.use('/api', companies)
-app.use('/users', users)
+// Express Validator Middleware
+// app.use(expressValidator())
+app.use(expressValidator({
+  errorFormatter: function (param, msg, value) {
+    const namespace = param.split('.')
+    const root = namespace.shift()
+    let formParam = root
+    while (namespace.length) {
+      formParam += `[ ${namespace.shift()}]`
+    }
+    return {
+      param: formParam,
+      msg: msg,
+      value: value
+    }
+  }
+}))
 
 app.use((err, req, res, next) => {
   res.status(422).send({
     error: err.message
   })
 })
+
+app.use('/api', companies)
+app.use('/users', users)
 
 app.listen(PORT, HOSTNAME, (err) => {
   let url = `http://${HOSTNAME}`

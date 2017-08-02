@@ -2,8 +2,13 @@
   <div id="app">
     <div class="">
       <router-link
-        :to="{name: 'Hello'}">
+        :to="{name: 'hello'}">
         Companies
+      </router-link>
+      
+      <router-link
+        :to="{name: 'registration'}">
+        Registration
       </router-link>
     </div>
     <img src="./assets/logo.png">

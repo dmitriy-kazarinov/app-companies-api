@@ -55,11 +55,6 @@ export default {
       }
     }
   },
-  created () {
-    axios.get('http://localhost:4000/users/register').then(res => {
-      console.log(res)
-    })
-  },
   methods: {
     registerUser () {
       axios.post('http://localhost:4000/users/register', this.userFormData).then(res => {

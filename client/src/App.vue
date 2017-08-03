@@ -5,10 +5,15 @@
         :to="{name: 'hello'}">
         Companies
       </router-link>
-      
+
       <router-link
         :to="{name: 'registration'}">
         Registration
+      </router-link>
+
+      <router-link
+        :to="{name: 'login'}">
+        Login
       </router-link>
     </div>
     <img src="./assets/logo.png">

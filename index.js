@@ -4,13 +4,14 @@ const expressValidator = require('express-validator')
 const companies = require('./routes/companies')
 const users = require('./routes/users')
 const mongoose = require('mongoose')
+const config = require('./config/database')
 
 const app = express()
 
 const HOSTNAME = process.env.HOSTNAME || '0.0.0.0'
 const PORT = process.env.PORT || 4000
 
-mongoose.connect('mongodb://localhost/companydb', { useMongoClient: true })
+mongoose.connect(config.database, { useMongoClient: true })
 mongoose.Promise = global.Promise
 
 app.use(bodyParser.json())
@@ -23,7 +24,6 @@ app.use((req, res, next) => {
 })
 
 // Express Validator Middleware
-// app.use(expressValidator())
 app.use(expressValidator({
   errorFormatter: function (param, msg, value) {
     const namespace = param.split('.')

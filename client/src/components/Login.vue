@@ -44,7 +44,9 @@ export default {
   },
   methods: {
     login () {
-      console.log('test')
+      axios.post('http://localhost:4000/users/login').then(res => {
+        console.log(res)
+      })
     }
   }
 }

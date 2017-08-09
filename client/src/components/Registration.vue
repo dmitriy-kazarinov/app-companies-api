@@ -58,8 +58,8 @@ export default {
   methods: {
     registerUser () {
       axios.post('http://localhost:4000/users/register', this.userFormData).then(res => {
-        console.log(res)
         this.userFormData = {}
+        this.$router.push({ name: 'login' })
       })
     }
   }
